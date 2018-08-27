@@ -41,16 +41,48 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>SOLID in JS</h1>
+					<h1>{SOLID} in JS</h1>
 					<h4>Design Principles</h4>
 					<p>
 						<small>Created by <a href="https://github.com/fgriberi">Franco G. Riberi.</a></small>
 					</p>
+
 					<img src="images/simple_logo.svg" style="align:center; vertical-align:middle" alt="Google" height="115" width="115">
 				</section>
 
-				<section>
+								<section>
 					<section data-background="images/whoami.gif">
+					</section>
+					<section>
+						<br>
+						<h3>What does <img src="images/google.png" style="align:center; vertical-align:middle" alt="Google" height="60" width="160"> say about me?</h3>
+						<section data-markdown>
+							<section data-markdown>
+								{
+									"name": "Franco Gaspar Riberi"
+									"age": "27"
+									"email": "fgriberi@gmail.com"
+									"url": "http://fgriberi.github.io"
+									"facebook": "https://www.facebook.com/franco.riberi1"
+									"twitter": "https://twitter.com/fgriberi"
+								}
+							</section>
+						</section>
+						<p class="fragment">Just in case ...</p>
+						<p class="fragment"><img src="images/me.jpeg" style="align:center; vertical-align:middle" alt="Google" height="140" width="160">
+						<b>!=</b>
+						<img src="images/notme.jpg" style="align:center; vertical-align:middle" alt="Google" height="140" width="160"></p>
+					</section>
+					<section>
+						<br>
+						<h3>What doesn't <img src="images/google.png" style="align:center; vertical-align:middle" alt="Google" height="60" width="160"> say about me?</h3>
+						<br>
+						<pre><code>I love travelling.</code></pre>
+						<pre><code>I love knowing new cultures.</code></pre>
+						<pre><code>I’m a trekking enthusiast.</code></pre>
+						<pre><code>I like to face New Challenges.</code></pre>
+						<pre><code>I enjoy resolving problems.</code></pre>
+						<pre><code>I’m a software developer.</code></pre>
 					</section>
 				</section>
 
@@ -60,8 +92,19 @@
 						<br>
 						<ol>
 						  <li>Introduction</li>
-						  <li>Principles</li>
+						  <li>{S.O.L.I.D}</li>
 						  <li>Summary</li>
+						</ol>
+					</section>
+					<section>
+						<h2>FAQ</h2>
+						<ol>
+							<li>Can I ask questions anytime?<br>
+								<small><b>Sure.</b></small>
+							</li>
+							<li>Do I need to note everything down?<br>
+								<small><b>No. The presentation is already online. Relax.</b></small>
+							</li>
 						</ol>
 					</section>
 				</section>
@@ -92,13 +135,18 @@
 
 				<section>
 					<section>
-						<h2>Single Responsibility Principle</h2> <!--(SRP)-->
+						<h2>{S.O.L.I.D}</h2>
+					</section>
+					<!--section data-background-image="/images/wtf.png"></section-->
+
+					<section>
+						<h2>Single Responsibility Principle (SRP)</h2>
 					</section>
 					<section>
-						<h2>Boring theory :-(</h2>
-						<b>Do one thing and do it well</b>
+						Do one thing and do it well.
+						<img src="/images/srp.png">
 						<aside class="notes">
-							This one is easy to comprehend but harder to implement.
+							Do one thing and do it well. This one is easy to comprehend but harder to implement.
 							Every function you write should do exactly one thing. It should have one clearly defined goal. Some times, it's a bit dificult to define what 'one thing' is.
 						</aside>
 					</section>
@@ -110,7 +158,7 @@
 
 				<section>
 					<section>
-						<h2>Open-Closed <br> Principle</h2> <!--(OCP)-->
+						<h2>Open-Closed <br> Principle (OCP)</h2>
 						<aside class="notes">
 							JavaScript modules should be open to extension, but closed to modification.
 							Meaning that if someone wants to extend our module’s behavior, they won’t need to modify existing code if they don’t want to.
@@ -118,8 +166,7 @@
 						<aside>
 					</section>
 					<section>
-						<h2>Boring theory :-(</h2>
-						TBD
+						<img src="/images/ocp.png">
 					</section>
 					<section>
 						<h2>Code examples :-)</h2>
@@ -129,13 +176,12 @@
 
 				<section>
 					<section>
-						<h2>Liskov Substitution Principle</h2> <!--(LSP)-->
+						<h2>Liskov Substitution Principle (LSP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<h2>Boring theory :-(</h2>
-						TBD
+						<img src="/images/lsp.png">
 					</section>
 					<section>
 						<h2>Code examples :-)</h2>
@@ -145,13 +191,12 @@
 
 				<section>
 					<section>
-						<h2>Interface Segregation Principle</h2> <!--(ISP)-->
+						<h2>Interface Segregation Principle (ISP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<h2>Boring theory :-(</h2>
-						TBD
+						<img src="/images/isp.png">
 					</section>
 					<section>
 						<h2>Code examples :-)</h2>
@@ -161,13 +206,12 @@
 
 				<section>
 					<section>
-						<h2>Dependency Inversion Principle</h2> <!--(DIP)-->
+						<h2>Dependency Inversion Principle (DIP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<h2>Boring theory :-(</h2>
-						TBD
+						<img src="/images/dip.png">
 					</section>
 					<section>
 						<h2>Code examples :-)</h2>
@@ -177,7 +221,13 @@
 				<section>
 					<section>
 						<h2>Summary</h2>
-						TBD
+						<ul>
+						  <li>SRP: una sola razón de cambio</li>
+						  <li>OCP: () extension [] modificación</li>
+						  <li>LSP: padres en lugar de hijos</li>
+						  <li>ISP: solo interfaces necesarias</li>
+						  <li>DIP: TBD</li>
+						</ul>
 					</section>
 				</section>
 
