@@ -13,4 +13,4 @@ We do not have a formal methodology, some possible ideas are:
 ## Talks
 
 
-* (solid-in-js) SOLID in Javascript
+* (solid-in-js) S.O.L.I.D in Javascript
