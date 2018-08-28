@@ -91,7 +91,7 @@
 						<h2>Overview</h2>
 						<br>
 						<ol>
-						  <li>Introduction</li>
+						  <li>Brief Introduction</li>
 						  <li>{S.O.L.I.D}</li>
 						  <li>Summary</li>
 						</ol>
@@ -103,7 +103,7 @@
 								<small><b>Sure.</b></small>
 							</li>
 							<li>Do I need to note everything down?<br>
-								<small><b>No. The presentation is already online. Relax.</b></small>
+								<small><b>No. The presentation is already online. </b></small>
 							</li>
 						</ol>
 					</section>
@@ -111,12 +111,11 @@
 				<section>
 					<section>
 						<h2>Introduction</h2>
-					</section>
-					<section data-background-image='https://d1tvk6jrw60uvw.cloudfront.net/bucket/solid-javascript.jpg'>
 						<aside class="notes">
-							Principios de diseño de la programacion orientada a objetos
+							TBD
 						<aside>
 					</section>
+
 					<section data-background-image='https://sites.google.com/site/unclebobconsultingllc/_/rsrc/1506631763576/home/Screen%20Shot%202017-09-28%20at%203.44.41%20PM.jpg'>
 						<aside class="notes">
 							The Uncle Bob: Robert C. Martin
@@ -137,97 +136,354 @@
 					<section>
 						<h2>{S.O.L.I.D}</h2>
 					</section>
-					<!--section data-background-image="/images/wtf.png"></section-->
-
 					<section>
-						<h2>Single Responsibility Principle (SRP)</h2>
+						<h2>The Single Responsibility Principle (SRP)</h2>
 					</section>
 					<section>
 						Do one thing and do it well.
 						<img src="/images/srp.png">
 						<aside class="notes">
-							Do one thing and do it well. This one is easy to comprehend but harder to implement.
-							Every function you write should do exactly one thing. It should have one clearly defined goal. Some times, it's a bit dificult to define what 'one thing' is.
+							TBD
 						</aside>
 					</section>
+
 					<section>
-						<h2>Code examples :-)</h2>
-						TODO: Clasic example - example for real toptive code
+						<pre><code class="Javascript" data-trim data-noescape>
+							class UserSettings {
+							  constructor(user) {
+							    this.user = user;
+							  }
+
+							  changeSettings(settings) {
+							    if (this.verifyCredentials()) {
+							      // ...
+							    }
+							  }
+
+							  verifyCredentials() {
+							    // ...
+							  }
+							}</code></pre>
+							<small>SRP? Settings vs authentication?</small>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class UserAuth {
+						  constructor(user) {
+						    this.user = user;
+						  }
+
+						  verifyCredentials() {
+						    // ...
+						  }
+						}
+						</code></pre>
+						<pre><code data-trim data-noescape>
+						class UserSettings {
+						  constructor(user) {
+						    this.user = user;
+						    this.auth = new UserAuth(user);
+						  }
+
+						  changeSettings(settings) {
+						    if (this.auth.verifyCredentials()) {
+						      // ...
+						    }
+						  }
+						}
+						</code></pre>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Open-Closed <br> Principle (OCP)</h2>
+						<h2>The Open-Closed Principle (OCP)</h2>
 						<aside class="notes">
-							JavaScript modules should be open to extension, but closed to modification.
-							Meaning that if someone wants to extend our module’s behavior, they won’t need to modify existing code if they don’t want to.
-							What happening with refactoring?
+							TBD
 						<aside>
 					</section>
 					<section>
 						<img src="/images/ocp.png">
 					</section>
 					<section>
-						<h2>Code examples :-)</h2>
-						TBD
+						<pre><code data-trim data-noescape>
+						class Pdf {
+						  constructor(name, size) {
+						    this.name = name;
+						    this.size = size;
+						  }
+						  // ...
+						}
+						class Png {
+						  constructor(name) {
+						    this.name = name;
+						  }
+						  // ...
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Printer {
+						  function printFile(file) {
+						    if (file instanceof Pdf) {
+						      // Print Pdf...
+						    } else if (file instanceof Png) {
+						      // Print Png...
+						    }
+						  }
+						}</code></pre>
+						OCP?
+						<aside class="notes">
+							Como vemos, el método printFile recibe un objeto que nos obliga a comprobar el tipo para poder imprimir cada archivo.
+						</aside>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Printable {
+						  function print() {
+						    // ...
+						  }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Pdf extends Printable {   class Png extends Printable {
+						  constructor(name, size) {       constructor(name) {
+						    super();                        super();
+						    this.name = name;               this.name = name;
+						    this.size = size;             }
+						  }
+
+						  // Override                     // Override
+						  function print() {              function print() {
+						    // ...                          // ...
+						  }                               }
+						}                               }
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Printer {
+						  function printFile(file) {
+						    file.print();
+						  }
+						}</code></pre>
+						<aside class="notes">
+							Ahora podríamos crear una clase Jpeg que extienda de Printable y no tendríamos que modificar nada del código que ya teníamos escrito, sólo implementar su propia función print.
+						</aside>
+					</section>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Liskov Substitution Principle (LSP)</h2>
+						<h2>The Liskov Substitution Principle (LSP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<img src="/images/lsp.png">
+						<small>If it looks a Duck, Quacks like a Duck, but needs batteries - You probably have the wrong abstraction.</small>
+						<img src="images/lsp.png" style="align:center; vertical-align:middle"height="590" width="740">
 					</section>
 					<section>
-						<h2>Code examples :-)</h2>
-						TBD
+						<pre><code data-trim data-noescape>
+						class Rectangle {
+						  constructor() { this.width = 0; this.height = 0; }
+						  setWidth(width) { this.width = width; }
+						  setHeight(height) { this.height = height; }
+						  getArea() { return this.width * this.height; }
+						}
+
+						class Square extends Rectangle {
+						  setWidth(width) { this.width = width; this.height = width; }
+						  setHeight(height) { this.width = height; this.height = height; }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						function renderLargeRectangles(rectangles) {
+						  rectangles.forEach((rectangle) => {
+						    rectangle.setWidth(4);
+						    rectangle.setHeight(5);
+						    const area = rectangle.getArea();
+						  });
+						}
+
+						const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+						renderLargeRectangles(rectangles);
+						</code></pre>
+					</section>
+
+					<section>
+						<pre><code data-trim data-noescape>
+						class Rectangle {
+						  constructor(width, height) { this.width = width; this.height = height; }
+						  getArea() { return this.width * this.height; }
+						}
+
+						class Square extends Rectangle {
+						  constructor(size) { super(size, size); }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						function renderLargeRectangles(rectangles) {
+						  rectangles.forEach((rectangle) => {
+						    const area = rectangle.getArea();
+						  });
+						}
+
+						const rectangles = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(4)];
+						renderLargeRectangles(rectangles);
+						</code></pre>
+						<!--aside>
+							Cada clase que hereda de otra puede usarse como su padre sin necesidad de conocer las diferencias entre ellas, esto nos obliga asegurarnos que cuando extendemos una clase no alteramos el comportamiento de la clase padre.
+						</aside-->
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Interface Segregation Principle (ISP)</h2>
+						<h2>The Interface Segregation Principle (ISP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<img src="/images/isp.png">
+						Avoid "fat" interfaces.
+						<img src="images/isp.png" style="align:center; vertical-align:middle"height="590" width="740">
 					</section>
 					<section>
-						<h2>Code examples :-)</h2>
-						TBD
+						<pre><code data-trim data-noescape>
+						class Car {                    class DeloRean extends Car {
+						  startEngine() {}               startEngine() {
+						  accelerate() {}                  // start engine...
+						  backToThePast() {}             }
+						  backToTheFuture() {}           accelerate() {
+						}                                  // accelerate...
+                                                         }
+						class Seat extends Car {         backToThePast() {
+						  startEngine() {                  // back to the past...
+						    // start engine...           }
+						  }                              backToTheFuture() {
+						  accelerate() {                   // back to the future...
+						    // accelerate...             }
+						  }                            }
+						}</code></pre>
+					</section>
+					<section>
+						<!--aside>
+							Al incluir en la clase abstracta Car los métodos de una clase concreta, en este caso DeloRean, obligamos a que todas las clases que implementan nuestra interfaz o clase abstracta también implementen esos métodos.
+						</aside-->
+						<pre><code data-trim data-noescape>
+						class Car {
+						  startEngine() {}
+						  accelerate() {}
+						}
+
+						class Seat extends Car {
+						  startEngine() {
+						    // start engine...
+						  }
+						  accelerate() {
+						    // accelerate...
+						  }
+						}</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						const TimeMachine = Super => class extends Super {
+						  backToThePast() {}
+						  backToTheFuture() {}
+						};
+
+						class DeloRean extends TimeMachine(Car) {
+						  startEngine() {
+						    // start engine...
+						  }
+						  accelerate() {
+						    // accelerate...
+						  }
+						  backToThePast() {
+						    // back to the past...
+						  }
+						  backToTheFuture() {
+						    // back to the future...
+						  }
+						}
+						</code></pre>
+						<!--aside>
+							Al separar las interfaces podemos implementar concreciones mucho mejor.
+							En Javascript no se puede extender de varias interfaces a la vez por lo que este principio no aplica a la perfección (pero sí en Typescript). Podríamos hacer que TimeMachine implemente Car. No es muy idiomático la herencia en sí en Javascript y yo suelo ser más partidario de favorecer la composición a la herencia.
+						</aside-->
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Dependency Inversion Principle (DIP)</h2>
+						<h2>The Dependency Inversion Principle (DIP)</h2>
 						<aside class="notes">
 						<aside>
 					</section>
 					<section>
-						<img src="/images/dip.png">
+						<img src="images/dip.png" style="align:center; vertical-align:middle"height="590" width="740">
 					</section>
 					<section>
-						<h2>Code examples :-)</h2>
-						TBD
+						<!-- No cumple con el principio de inversión de dependencias-->
+						<pre><code data-trim data-noescape>
+						class Milk {
+						  // ...
+						}
+
+						class Coffee {
+						  constructor(milk) {
+						    this.milk = milk
+						  }
+
+						  cost() {
+						    // calculate the cost
+						  }
+						}</code></pre>
+						<!--aside>
+							La clase Coffee tiene que conocer la clase Milk para poder calcular el coste del café con lo que nos acoplamos mucho más a esa clase concreta.
+						</aside-->
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Ingredient {
+						  // implementation
+						}
+
+						class Milk extends Ingredient {
+						  // implementation
+						}
+
+						class Beverage {
+						  constructor(ingredient) { this.ingredient = ingredient }
+
+						  cost() { // calculate the cost }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Coffee extends Beverage {
+
+						  cost() { // calculate the cost }
+						}</code></pre>
+						<!--aside>
+							Utilizar una abstracción y recibir la instancia hace la clase Coffee y la clase Milk sean mucho más fáciles de modificar o de cambiar por otro tipo de bebida o ingrediente.
+						</aside-->
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Summary</h2>
 						<ul>
-						  <li>SRP: una sola razón de cambio</li>
-						  <li>OCP: () extension [] modificación</li>
-						  <li>LSP: padres en lugar de hijos</li>
-						  <li>ISP: solo interfaces necesarias</li>
-						  <li>DIP: TBD</li>
+						  <li>[S]RP: una sola razón de cambio</li>
+						  <li>[O]CP: () extension [] modificación</li>
+						  <li>[L]SP: derivada en lugar de base</li>
+						  <li>[I]SP: solo interfaces necesarias</li>
+						  <li>[D]IP: TBD</li>
 						</ul>
+					</section>
+					<section>
+						<h2>Bonus Track</h2>
+						<ul>
+						  <li>(KISS) - "Keep it simple, Stupid!" </li>
+						  <li>(DRY) - "Don’t repeat yourself" </li>
+						  <li>(YAGNI) -"You aren't gonna need it" </li>
+						</ul>
+						<br><br>
+						To read: <a href="http://guillemette.org/uqam/mgl7361/assets/documents/SOLID_principles.pdf">SOLID_principles.pdf</a>
 					</section>
 				</section>
 
