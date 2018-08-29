@@ -41,16 +41,48 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>SOLID in JS</h1>
+					<h1>{SOLID} in JS</h1>
 					<h4>Design Principles</h4>
 					<p>
 						<small>Created by <a href="https://github.com/fgriberi">Franco G. Riberi.</a></small>
 					</p>
+
 					<img src="images/simple_logo.svg" style="align:center; vertical-align:middle" alt="Google" height="115" width="115">
 				</section>
 
-				<section>
+								<section>
 					<section data-background="images/whoami.gif">
+					</section>
+					<section>
+						<br>
+						<h3>What does <img src="images/google.png" style="align:center; vertical-align:middle" alt="Google" height="60" width="160"> say about me?</h3>
+						<section data-markdown>
+							<section data-markdown>
+								{
+									"name": "Franco Gaspar Riberi"
+									"age": "27"
+									"email": "fgriberi@gmail.com"
+									"url": "http://fgriberi.github.io"
+									"facebook": "https://www.facebook.com/franco.riberi1"
+									"twitter": "https://twitter.com/fgriberi"
+								}
+							</section>
+						</section>
+						<p class="fragment">Just in case ...</p>
+						<p class="fragment"><img src="images/me.jpeg" style="align:center; vertical-align:middle" alt="Google" height="140" width="160">
+						<b>!=</b>
+						<img src="images/notme.jpg" style="align:center; vertical-align:middle" alt="Google" height="140" width="160"></p>
+					</section>
+					<section>
+						<br>
+						<h3>What doesn't <img src="images/google.png" style="align:center; vertical-align:middle" alt="Google" height="60" width="160"> say about me?</h3>
+						<br>
+						<pre><code>I love travelling.</code></pre>
+						<pre><code>I love knowing new cultures.</code></pre>
+						<pre><code>I’m a trekking enthusiast.</code></pre>
+						<pre><code>I like to face New Challenges.</code></pre>
+						<pre><code>I enjoy resolving problems.</code></pre>
+						<pre><code>I’m a software developer.</code></pre>
 					</section>
 				</section>
 
@@ -59,49 +91,456 @@
 						<h2>Overview</h2>
 						<br>
 						<ol>
-						  <li>TBD 1</li>
-						  <li>TBD 2</li>
+						  <li>Brief Introduction</li>
+						  <li>{S.O.L.I.D}</li>
+						  <li>Summary</li>
+						</ol>
+					</section>
+					<section>
+						<h2>FAQ</h2>
+						<ol>
+							<li>Can I ask questions anytime?<br>
+								<small><b>Sure.</b></small>
+							</li>
+							<li>Do I need to note everything down?<br>
+								<small><b>No. The presentation is already online. </b></small>
+							</li>
 						</ol>
 					</section>
 				</section>
 				<section>
 					<section>
-						<h2>TBD 1</h2>
+						<h2>Introduction</h2>
+						<aside class="notes">
+							TBD
+						<aside>
+					</section>
+
+					<section data-background-image='https://sites.google.com/site/unclebobconsultingllc/_/rsrc/1506631763576/home/Screen%20Shot%202017-09-28%20at%203.44.41%20PM.jpg'>
+						<aside class="notes">
+							The Uncle Bob: Robert C. Martin
+						<aside>
+					</section>
+
+					<section data-background-image='https://sites.google.com/site/unclebobconsultingllc/_/rsrc/1506631763576/home/Screen%20Shot%202017-09-28%20at%203.44.41%20PM.jpg'>
+
+						<img src="https://images-na.ssl-images-amazon.com/images/I/5154eSTKUxL._SX382_BO1,204,203,200_.jpg%22:[384,499],%22https://images-na.ssl-images-amazon.com/images/I/5154eSTKUxL._SX258_BO1,204,203,200_.jpg" style="align:center; vertical-align:middle" alt="Google" height="240" width="180">
+
+						<img src="https://images-na.ssl-images-amazon.com/images/I/515iEcDr1GL._SX385_BO1,204,203,200_.jpg%22:[387,499],%22https://images-na.ssl-images-amazon.com/images/I/515iEcDr1GL._SX258_BO1,204,203,200_.jpg" style="align:center; vertical-align:middle" alt="Google" height="240" width="180">
+
+						<img src="https://sites.google.com/site/unclebobconsultingllc/_/rsrc/1468751886022/books/Agile%20Software%20Development%20book.JPG" style="align:center; vertical-align:middle" alt="Google" height="240" width="180">
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>TBD 2</h2>
+						<h2>{S.O.L.I.D}</h2>
+					</section>
+					<section>
+						<h2>The Single Responsibility Principle (SRP)</h2>
+					</section>
+					<section>
+						Do one thing and do it well.
+						<img src="/images/srp.png">
+						<aside class="notes">
+							TBD
+						</aside>
+					</section>
+
+					<section>
+						<pre><code class="Javascript" data-trim data-noescape>
+							class UserSettings {
+							  constructor(user) {
+							    this.user = user;
+							  }
+
+							  changeSettings(settings) {
+							    if (this.verifyCredentials()) {
+							      // ...
+							    }
+							  }
+
+							  verifyCredentials() {
+							    // ...
+							  }
+							}</code></pre>
+							<small>SRP? Settings vs authentication?</small>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class UserAuth {
+						  constructor(user) {
+						    this.user = user;
+						  }
+
+						  verifyCredentials() {
+						    // ...
+						  }
+						}
+						</code></pre>
+						<pre><code data-trim data-noescape>
+						class UserSettings {
+						  constructor(user) {
+						    this.user = user;
+						    this.auth = new UserAuth(user);
+						  }
+
+						  changeSettings(settings) {
+						    if (this.auth.verifyCredentials()) {
+						      // ...
+						    }
+						  }
+						}
+						</code></pre>
 					</section>
 				</section>
 
+				<section>
+					<section>
+						<h2>The Open-Closed Principle (OCP)</h2>
+						<aside class="notes">
+							TBD
+						<aside>
+					</section>
+					<section>
+						<img src="/images/ocp.png">
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Pdf {
+						  constructor(name, size) {
+						    this.name = name;
+						    this.size = size;
+						  }
+						  // ...
+						}
+						class Png {
+						  constructor(name) {
+						    this.name = name;
+						  }
+						  // ...
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Printer {
+						  function printFile(file) {
+						    if (file instanceof Pdf) {
+						      // Print Pdf...
+						    } else if (file instanceof Png) {
+						      // Print Png...
+						    }
+						  }
+						}</code></pre>
+						OCP?
+						<aside class="notes">
+							Como vemos, el método printFile recibe un objeto que nos obliga a comprobar el tipo para poder imprimir cada archivo.
+						</aside>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Printable {
+						  function print() {
+						    // ...
+						  }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Pdf extends Printable {   class Png extends Printable {
+						  constructor(name, size) {       constructor(name) {
+						    super();                        super();
+						    this.name = name;               this.name = name;
+						    this.size = size;             }
+						  }
+
+						  // Override                     // Override
+						  function print() {              function print() {
+						    // ...                          // ...
+						  }                               }
+						}                               }
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Printer {
+						  function printFile(file) {
+						    file.print();
+						  }
+						}</code></pre>
+						<aside class="notes">
+							Ahora podríamos crear una clase Jpeg que extienda de Printable y no tendríamos que modificar nada del código que ya teníamos escrito, sólo implementar su propia función print.
+						</aside>
+					</section>
+
+					<!-- Another example -->
+					<section>
+						<pre><code data-trim data-noescape>
+            let iceCreamFlavors = ['chocolate', 'vanilla'];
+            let iceCreamMaker = {
+              makeIceCream(flavor) {
+                if (iceCreamFlavors.indexOf(flavor) > -1) {
+                  console.log('Great success. You now have ice cream.');
+                } else {
+                  console.log('Epic fail. No ice cream for you.');
+                }
+              },
+            };
+            export default iceCreamMaker;
+            }</code></pre>
+						</section>
+
+						<section>
+						<pre><code data-trim data-noescape>
+            let iceCreamFlavors = ['chocolate', 'vanilla'];
+            let iceCreamMaker = {
+              makeIceCream(flavor) {
+                if (iceCreamFlavors.indexOf(flavor) > -1) {
+                  console.log('Great success. You now have ice cream.');
+                } else {
+                  console.log('Epic fail. No ice cream for you.');
+                }
+              },
+              addFlavor(flavor) {
+               iceCreamFlavors.push(flavor);
+              },
+            };
+            export default iceCreamMaker;
+						}</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>The Liskov Substitution Principle (LSP)</h2>
+						<aside class="notes">
+						<aside>
+					</section>
+					<section>
+						<small>If it looks a Duck, Quacks like a Duck, but needs batteries - You probably have the wrong abstraction.</small>
+						<img src="images/lsp.png" style="align:center; vertical-align:middle"height="590" width="740">
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Rectangle {
+						  constructor() { this.width = 0; this.height = 0; }
+						  setWidth(width) { this.width = width; }
+						  setHeight(height) { this.height = height; }
+						  getArea() { return this.width * this.height; }
+						}
+
+						class Square extends Rectangle {
+						  setWidth(width) { this.width = width; this.height = width; }
+						  setHeight(height) { this.width = height; this.height = height; }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						function renderLargeRectangles(rectangles) {
+						  rectangles.forEach((rectangle) => {
+						    rectangle.setWidth(4);
+						    rectangle.setHeight(5);
+						    const area = rectangle.getArea();
+						  });
+						}
+
+						const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+						renderLargeRectangles(rectangles);
+						</code></pre>
+					</section>
+
+					<section>
+						<pre><code data-trim data-noescape>
+						class Rectangle {
+						  constructor(width, height) { this.width = width; this.height = height; }
+						  getArea() { return this.width * this.height; }
+						}
+
+						class Square extends Rectangle {
+						  constructor(size) { super(size, size); }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						function renderLargeRectangles(rectangles) {
+						  rectangles.forEach((rectangle) => {
+						    const area = rectangle.getArea();
+						  });
+						}
+
+						const rectangles = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(4)];
+						renderLargeRectangles(rectangles);
+						</code></pre>
+						<!--aside>
+							Cada clase que hereda de otra puede usarse como su padre sin necesidad de conocer las diferencias entre ellas, esto nos obliga asegurarnos que cuando extendemos una clase no alteramos el comportamiento de la clase padre.
+						</aside-->
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>The Interface Segregation Principle (ISP)</h2>
+						<aside class="notes">
+						<aside>
+					</section>
+					<section>
+						Avoid "fat" interfaces.
+						<img src="images/isp.png" style="align:center; vertical-align:middle"height="590" width="740">
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Car {                    class DeloRean extends Car {
+						  startEngine() {}               startEngine() {
+						  accelerate() {}                  // start engine...
+						  backToThePast() {}             }
+						  backToTheFuture() {}           accelerate() {
+						}                                  // accelerate...
+                                                         }
+						class Seat extends Car {         backToThePast() {
+						  startEngine() {                  // back to the past...
+						    // start engine...           }
+						  }                              backToTheFuture() {
+						  accelerate() {                   // back to the future...
+						    // accelerate...             }
+						  }                            }
+						}</code></pre>
+					</section>
+					<section>
+						<!--aside>
+							Al incluir en la clase abstracta Car los métodos de una clase concreta, en este caso DeloRean, obligamos a que todas las clases que implementan nuestra interfaz o clase abstracta también implementen esos métodos.
+						</aside-->
+						<pre><code data-trim data-noescape>
+						class Car {
+						  startEngine() {}
+						  accelerate() {}
+						}
+
+						class Seat extends Car {
+						  startEngine() {
+						    // start engine...
+						  }
+						  accelerate() {
+						    // accelerate...
+						  }
+						}</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						const TimeMachine = Super => class extends Super {
+						  backToThePast() {}
+						  backToTheFuture() {}
+						};
+
+						class DeloRean extends TimeMachine(Car) {
+						  startEngine() {
+						    // start engine...
+						  }
+						  accelerate() {
+						    // accelerate...
+						  }
+						  backToThePast() {
+						    // back to the past...
+						  }
+						  backToTheFuture() {
+						    // back to the future...
+						  }
+						}
+						</code></pre>
+						<!--aside>
+							Al separar las interfaces podemos implementar concreciones mucho mejor.
+							En Javascript no se puede extender de varias interfaces a la vez por lo que este principio no aplica a la perfección (pero sí en Typescript). Podríamos hacer que TimeMachine implemente Car. No es muy idiomático la herencia en sí en Javascript y yo suelo ser más partidario de favorecer la composición a la herencia.
+						</aside-->
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>The Dependency Inversion Principle (DIP)</h2>
+						<aside class="notes">
+						<aside>
+					</section>
+					<section>
+						<img src="images/dip.png" style="align:center; vertical-align:middle"height="590" width="740">
+					</section>
+					<section>
+						<!-- No cumple con el principio de inversión de dependencias-->
+						<pre><code data-trim data-noescape>
+						class Milk {
+						  // ...
+						}
+
+						class Coffee {
+						  constructor(milk) {
+						    this.milk = milk
+						  }
+
+						  cost() {
+						    // calculate the cost
+						  }
+						}</code></pre>
+						<!--aside>
+							La clase Coffee tiene que conocer la clase Milk para poder calcular el coste del café con lo que nos acoplamos mucho más a esa clase concreta.
+						</aside-->
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						class Ingredient {
+						  // implementation
+						}
+
+						class Milk extends Ingredient {
+						  // implementation
+						}
+
+						class Beverage {
+						  constructor(ingredient) { this.ingredient = ingredient }
+
+						  cost() { // calculate the cost }
+						}</code></pre>
+						<pre><code data-trim data-noescape>
+						class Coffee extends Beverage {
+
+						  cost() { // calculate the cost }
+						}</code></pre>
+						<!--aside>
+							Utilizar una abstracción y recibir la instancia hace la clase Coffee y la clase Milk sean mucho más fáciles de modificar o de cambiar por otro tipo de bebida o ingrediente.
+						</aside-->
+					</section>
+				</section>
 				<section>
 					<section>
 						<h2>Summary</h2>
+						<ul>
+						  <li>[S]: a single reason for change</li>
+						  <li>[O]: () extension [] modification</li>
+						  <li>[L]: derived instead of base</li>
+						  <li>[I]: only necessary interfaces</li>
+						  <li>[D]: depend on abstractions</li>
+						</ul>
+					</section>
+					<section data-background-image="https://i1.wp.com/joseperezquintero.com/wp-content/uploads/2016/08/giphy.gif">
+						<h2>Bonus Track</h2>
+						<ul>
+						  <li><b>(KISS)</b> - "Keep it simple, Stupid!" </li>
+						  <li><b>(DRY)</b> - "Don't repeat yourself" </li>
+						  <li><b>(YAGNI)</b> -"You aren't gonna need it" </li>
+						</ul>
+						<br><br>
+						To read: <a href="http://guillemette.org/uqam/mgl7361/assets/documents/SOLID_principles.pdf">SOLID_principles.pdf</a>
 					</section>
 				</section>
-				<section>
-					<img src="images/questions.gif" style="align:center; vertical-align:middle" alt="Google" height="640" width="750">
+
+				<section data-background-image="https://media3.giphy.com/media/3oriO5EMLxl1f7funu/giphy.gif">
 				</section>
-				<section>
-					<img src="images/thanks.jpg" style="align:center; vertical-align:middle" alt="Google" height="540" width="1050">
+				<section data-background-image="images/thanks.jpg">
 				</section>
+				<section data-background-image="https://media1.giphy.com/media/14SAxbecxzvz0SbVsx/giphy.gif">
+				</section>
+
 			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
-
 		<script>
-
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
 				progress: true,
 				history: true,
 				center: true,
-
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
@@ -115,7 +554,6 @@
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
-
 		</script>
 	</body>
 </html>
