@@ -8,9 +8,7 @@ We do not have a formal methodology, some possible ideas are:
 * Presentation
 * Workshop
 * Demo day
-* Others? 
+* Others?
 
 ## Talks
-
-
-* (solid-in-js) S.O.L.I.D in Javascript
+* (solid-in-js) {SOLID} in JS
