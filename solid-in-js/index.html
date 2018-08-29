@@ -268,6 +268,41 @@
 							Ahora podríamos crear una clase Jpeg que extienda de Printable y no tendríamos que modificar nada del código que ya teníamos escrito, sólo implementar su propia función print.
 						</aside>
 					</section>
+
+					<!-- Another example -->
+					<section>
+						<pre><code data-trim data-noescape>
+            let iceCreamFlavors = ['chocolate', 'vanilla'];
+            let iceCreamMaker = {
+              makeIceCream(flavor) {
+                if (iceCreamFlavors.indexOf(flavor) > -1) {
+                  console.log('Great success. You now have ice cream.');
+                } else {
+                  console.log('Epic fail. No ice cream for you.');
+                }
+              },
+            };
+            export default iceCreamMaker;
+            }</code></pre>
+						</section>
+
+						<section>
+						<pre><code data-trim data-noescape>
+            let iceCreamFlavors = ['chocolate', 'vanilla'];
+            let iceCreamMaker = {
+              makeIceCream(flavor) {
+                if (iceCreamFlavors.indexOf(flavor) > -1) {
+                  console.log('Great success. You now have ice cream.');
+                } else {
+                  console.log('Epic fail. No ice cream for you.');
+                }
+              },
+              addFlavor(flavor) {
+               iceCreamFlavors.push(flavor);
+              },
+            };
+            export default iceCreamMaker;
+						}</code></pre>
 					</section>
 				</section>
 
@@ -468,31 +503,32 @@
 					<section>
 						<h2>Summary</h2>
 						<ul>
-						  <li>[S]RP: una sola razón de cambio</li>
-						  <li>[O]CP: () extension [] modificación</li>
-						  <li>[L]SP: derivada en lugar de base</li>
-						  <li>[I]SP: solo interfaces necesarias</li>
-						  <li>[D]IP: TBD</li>
+						  <li>[S]: a single reason for change</li>
+						  <li>[O]: () extension [] modification</li>
+						  <li>[L]: derived instead of base</li>
+						  <li>[I]: only necessary interfaces</li>
+						  <li>[D]: depend on abstractions</li>
 						</ul>
 					</section>
-					<section>
+					<section data-background-image="https://i1.wp.com/joseperezquintero.com/wp-content/uploads/2016/08/giphy.gif">
 						<h2>Bonus Track</h2>
 						<ul>
-						  <li>(KISS) - "Keep it simple, Stupid!" </li>
-						  <li>(DRY) - "Don’t repeat yourself" </li>
-						  <li>(YAGNI) -"You aren't gonna need it" </li>
+						  <li><b>(KISS)</b> - "Keep it simple, Stupid!" </li>
+						  <li><b>(DRY)</b> - "Don't repeat yourself" </li>
+						  <li><b>(YAGNI)</b> -"You aren't gonna need it" </li>
 						</ul>
 						<br><br>
 						To read: <a href="http://guillemette.org/uqam/mgl7361/assets/documents/SOLID_principles.pdf">SOLID_principles.pdf</a>
 					</section>
 				</section>
 
-				<section>
-					<img src="images/questions.gif" style="align:center; vertical-align:middle" alt="Google" height="640" width="750">
+				<section data-background-image="https://media3.giphy.com/media/3oriO5EMLxl1f7funu/giphy.gif">
 				</section>
-				<section>
-					<img src="images/thanks.jpg" style="align:center; vertical-align:middle" alt="Google" height="540" width="1050">
+				<section data-background-image="images/thanks.jpg">
 				</section>
+				<section data-background-image="https://media1.giphy.com/media/14SAxbecxzvz0SbVsx/giphy.gif">
+				</section>
+
 			</div>
 		</div>
 
