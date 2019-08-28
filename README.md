@@ -11,4 +11,6 @@ We do not have a formal methodology, some possible ideas are:
 * Others?
 
 ## Talks
-* (solid-in-js) {SOLID} in JS
+* (solid-in-js) - {SOLID} in JS
+* (redux-expo) - Introduction to redux
+* (graphql-talk)	- Introduction to GraphQL 
