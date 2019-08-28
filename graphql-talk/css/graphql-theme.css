@@ -1,0 +1,130 @@
+.gtitle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gcolor {
+  color: #e10098 !important;
+}
+.gtext-color {
+  color: #f0f8ff !important;
+}
+.query-field {
+  color: #328c8c;
+}
+.keyword {
+  color: #366b6b;
+}
+
+.glogo {
+  width: 4.77em;
+  height: 4.77em;
+  margin: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.gimage {
+  margin: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.homer-thinking {
+  background-image: url("../assets/homer-thinking.png");
+  background-size: cover;
+  width: 105px;
+  height: 100px;
+  margin-left: 20px;
+}
+
+.homer-happy {
+  background-image: url("../assets/homer-happy.png");
+  background-size: cover;
+  width: 105px;
+  height: 100px;
+  margin-left: 20px;
+}
+
+.homer-ouch {
+  background-image: url("../assets/homer-ouch.png");
+  background-size: cover;
+  width: 105px;
+  height: 100px;
+  margin-left: 20px;
+}
+
+.homer-pointing {
+  background-image: url("../assets/homer-pointing.png");
+  background-size: cover;
+  width: 80px;
+  height: 100px;
+  margin-left: 20px;
+}
+
+.glist-container {
+  text-align: left;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-justify {
+  text-align: justify;
+}
+
+/* Font sizes */
+.gh1 {
+  font-size: 3.77em;
+}
+.gh2 {
+  font-size: 1.5em;
+}
+.gh3 {
+  font-size: 1.17em;
+}
+.gh4 {
+  font-size: 1em;
+}
+
+.side-by-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.blockquote {
+  text-align: left;
+  margin-left: 15px !important;
+  font-style: italic;
+  padding-left: 10px;
+  border-left: 6px solid rgb(204, 217, 223);
+  /* height: 510px; */
+}
+
+.token.operator,
+.token.punctuation {
+  color: #dfe0d8;
+}
+
+.language-autohotkey .token.selector,
+.token.atrule,
+.token.attr-name,
+.token.keyword {
+  color: #00a4db;
+}
+
+.tab {
+  margin-left: 50px;
+}
+.tab2 {
+  margin-left: 100px;
+}
+.tab3 {
+  margin-left: 150px;
+}

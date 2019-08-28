@@ -1,0 +1,97 @@
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Big Picture (Architecture)</p>
+  </div>
+  <p class="text-align-justify">
+    GraphQL ha sido lanzado sólo como una especificación. Esto significa que
+    GraphQL no es más que un documento largo que describe en detalle el
+    comportamiento de un servidor GraphQL.
+  </p>
+</section>
+<section>
+  <p class="gcolor gh2">Use Cases</p>
+  <div class="glist-container">
+    <li class="fragment fade-in">
+      Servidor GraphQL conectado a una DB.
+    </li>
+    <li class="fragment fade-in">
+      El servidor GraphQL como capa frente a varios sistemas de terceros para
+      integrarlos a través de una única API GraphQL.
+    </li>
+    <li class="fragment fade-in">
+      Un enfoque híbrido de una DB y sistemas de terceros a los que se puede
+      acceder a través de la misma API GraphQL
+    </li>
+  </div>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">GraphQL server with a connected database</p>
+  </div>
+  <img src="assets/arq1.png" />
+  <p class="gtext-color gh4 blockquote">
+    Una arquitectura estándar con un servidor GraphQL que se conecta a una sola
+    DB.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">GraphQL layer that integrates existing systems</p>
+  </div>
+  <img style="height: 430px" src="assets/arq2.png" />
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">
+      Hybrid approach with DB and integration of existing system
+    </p>
+  </div>
+  <img style="height: 430px" src="assets/arq3.png" />
+</section>
+<section>
+  <p class="text-align-justify">
+    ¿Pero cómo ganamos esta flexibilidad con GraphQL?
+  </p>
+  <div class="fragment fade-in">
+    <div class="gtitle-container">
+      <p class="gcolor gh2">Resolver Functions</p>
+      <div class="homer-pointing"></div>
+    </div>
+    <p class="text-align-justify">
+      El payload de una query (o mutación) de GraphQL consiste en un conjunto de
+      campos. En la implementación del servidor GraphQL, cada uno de estos
+      campos en realidad corresponde exactamente a una función que se llama
+      <strong>resolver</strong>. El único propósito de un resolver es recuperar
+      los datos para su campo.
+    </p>
+  </div>
+</section>
+<section>
+  <p class="text-align-justify">
+    Cuando el servidor recibe una query, ejecuta todas las funciones para los
+    campos que se especifican en el payload. Por lo tanto, resuelve la query y
+    puede recuperar los datos correctos para cada campo. Una vez que todos los
+    resolvers retornan, el servidor empaquetará los datos en el formato
+    descripto por la query y los enviará de vuelta al cliente.
+  </p>
+  <img src="assets/resolver.png" />
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">GraphQL Client Libraries</p>
+  </div>
+  <p class="text-align-justify">
+    Librerias de GraphQL, como Relay o Apollo proporcionan la abstracción
+    necesaria para poder centrarse en las partes importantes de la aplicación en
+    lugar de tener que lidiar con la implementación repetitiva de
+    infraestructura.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">
+      The end...
+    </p>
+  </div>
+  <img style="height: 500px" src="assets/fin.jpg" />
+</section>

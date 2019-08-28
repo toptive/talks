@@ -1,0 +1,70 @@
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">REST vs GraphQL</p>
+  </div>
+  <p class="text-align-justify">
+    Para ilustrar las principales diferencias entre REST y GraphQL cuando se
+    trata de obtener datos de una API, consideremos un ejemplo simple: en una
+    aplicación de blogging, se necesita mostrar los títulos de las publicaciones
+    de un usuario específico. La misma pantalla también muestra los nombres de
+    los últimos 3 seguidores de ese usuario.
+  </p>
+  <p class="fragment fade-in gtext-color">
+    ¿Cómo se resolvería esa situación con REST y GraphQL?
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">With REST</p>
+    <div class="homer-ouch"></div>
+  </div>
+  <div class="side-by-side">
+    <img style="height: 510px" src="assets/rest.png" />
+    <p class="gtext-color gh4 blockquote">
+      Notemos que estamos haciendo <strong>overfetching</strong> dado que los
+      endpoints retornan información adicional que no necesitamos.
+    </p>
+  </div>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">With GraphQL</p>
+    <div class="homer-happy"></div>
+  </div>
+  <div class="side-by-side">
+    <img style="height: 510px" src="assets/graphQL.png" />
+    <p class="gtext-color gh4 blockquote">
+      Usando GraphQL, el cliente puede especificar exactamente los datos que
+      necesita en una consulta.
+    </p>
+  </div>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">No more Over- and Underfetching</p>
+  </div>
+  <div class="">
+    <p class="text-align-justify">
+      Uno de los problemas más comunes con REST es el over/underfetching. Esto
+      sucede porque la única forma en que un cliente puede descargar datos es
+      utilizando los endpoints que devuelven estructuras de datos fijas. Es muy
+      difícil diseñar la API de manera que pueda proporcionar a los clientes los
+      datos exactos que necesitan.
+    </p>
+  </div>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Benefits of a Schema & Type System</p>
+  </div>
+  <div class="">
+    <p class="text-align-justify">
+      GraphQL usa un sistema fuertemente tipado para definir las capacidades de
+      una API. Todos los tipos que se exponen en una API se escriben en un
+      esquema utilizando el lenguaje de definición de esquema
+      <strong>GraphQL (SDL)</strong>. Este esquema sirve como el contrato entre
+      el cliente y el servidor para definir cómo un cliente puede acceder a los
+      datos.
+    </p>
+  </div>
+</section>

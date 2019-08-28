@@ -1,0 +1,328 @@
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">The Schema Definition Language</p>
+  </div>
+  <p class="text-align-justify">
+    GraphQL tiene su propio sistema de tipos que se utiliza para definir el
+    esquema de una API. La sintaxis para escribir esquemas se denomina lenguaje
+    de definición de esquema (SDL).
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">The Schema Definition Language</p>
+  </div>
+  <p class="text-align-justify">
+    Aquí hay un ejemplo de cómo podemos usar el SDL para definir un tipo simple
+    Persona
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span>type Person </span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token attr-name tab">name</span>
+    <span class="token punctuation">:</span>
+    <span> String</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token attr-name tab">age</span>
+    <span class="token punctuation">:</span>
+    <span> Int</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+  <p class="gtext-color gh4 blockquote">
+    El <strong>!</strong> seguido al tipo significa que este campo es
+    obligatorio.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">The Schema Definition Language</p>
+  </div>
+  <p class="text-align-justify">
+    También es posible expresar relaciones entre tipos. En el ejemplo de una
+    aplicación de blog, una Persona podría estar asociada a un Post:
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span>type Post </span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token attr-name tab">title</span>
+    <span class="token punctuation">:</span>
+    <span> String</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token attr-name tab">author</span>
+    <span class="token punctuation">:</span>
+    <span> Person</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">The Schema Definition Language</p>
+  </div>
+  <p class="text-align-justify">
+    A la inversa, el otro extremo de la relación debe colocarse en el tipo de
+    persona:
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span>type Person </span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token attr-name tab">name</span>
+    <span class="token punctuation">:</span>
+    <span> String</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token attr-name tab">age</span>
+    <span class="token punctuation">:</span>
+    <span> Int</span>
+    <span class="token operator">!</span>
+    <br />
+    <div class="fragment fade-in">
+      <span class="token attr-name tab">posts</span>
+      <span class="token punctuation">:</span>
+      <span> [Post!]</span>
+      <span class="token operator">!</span>
+      <br />
+    </div>
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Fetching Data with Queries</p>
+  </div>
+  <p class="text-align-justify">
+    El enfoque que se toma en GraphQL es radicalmente diferente a API REST. En
+    lugar de tener múltiples endpoints que devuelven estructuras de datos fijas,
+    las API de GraphQL normalmente solo exponen un único endpoint.
+  </p>
+  <p class="text-align-justify">
+    Esto funciona porque la estructura de los datos que se devuelven no es fija.
+    El cliente necesita enviar más información al servidor para expresar los
+    datos que necesita; esta información se denomina query.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Queries</p>
+  </div>
+  <p class="text-align-justify">
+    El campo allPersons en esta query se le llama el root field de la query.
+    Todo lo que sigue al root field, se llama payload de la query. El único
+    campo que se especifica en el payload de esta query es name.
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">allPerson</span>
+    <span class="token punctuation tab">{</span>
+    <br />
+    <span class="token query-field tab2">name</span>
+    <br />
+    <span class="token punctuation tab">}</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Queries</p>
+  </div>
+  <p class="text-align-justify">
+    Esta query retorna todas las personas con su nombre. Si también necesito la
+    edad, todo lo que tengo que hacer es incluir el campo age en el payload.
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">allPerson</span>
+    <span class="token punctuation tab">{</span>
+    <br />
+    <span class="token query-field tab2">name</span>
+    <br />
+    <div class="fragment fade-in">
+      <span class="token query-field tab2">age</span>
+      <br />
+    </div>
+    <span class="token punctuation tab">}</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <p class="text-align-justify">
+    Una de las principales ventajas de GraphQL es que permite la consulta de
+    información anidada.
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">allPerson</span>
+    <span class="token punctuation tab">{</span>
+    <br />
+    <span class="token query-field tab2">name</span>
+    <br />
+    <div class="fragment fade-in">
+      <span class="token query-field tab2">posts</span>
+      <span class="token punctuation">{</span>
+      <br />
+      <span class="token query-field tab3">title</span>
+      <br />
+      <span class="token punctuation tab2">}</span>
+    </div>
+    <span class="token punctuation tab">}</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Writing Data with Mutations</p>
+  </div>
+  <p class="text-align-justify">
+    Como realizar cambios en los datos almacenados en el servidor con GraphQL?,
+    estos cambios se realizan utilizando <strong>Mutations</strong>, hay tres
+    tipos de mutaciones:
+  </p>
+  <div class="glist-container">
+    <li class="fragment fade-in">
+      creating new data
+    </li>
+    <li class="fragment fade-in">
+      updating existing data
+    </li>
+    <li class="fragment fade-in">
+      deleting existing data
+    </li>
+  </div>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Mutations</p>
+  </div>
+  <p class="text-align-justify">
+    Las mutaciones siguen la misma estructura sintáctica que las consultas, pero
+    siempre deben comenzar con la palabra clave <strong>mutation</strong>.
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="keyword">mutation</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">createPerson</span>
+    <span>(name:"Homero",...)</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token query-field tab2">name</span>
+    <br />
+    <span class="token query-field tab2">age</span>
+    <br />
+    <span class="token punctuation tab">}</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Mutations</p>
+  </div>
+  <p class="text-align-justify">
+    Al igual que con una query, también podemos especificar un payload en el que
+    podemos solicitar diferentes propiedades del nuevo objeto Person. Ser capaz
+    de consultar información al enviar mutaciones puede ser una herramienta muy
+    poderosa que nos permite recuperar información nueva del servidor en un solo
+    viaje de ida y vuelta.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Mutation</p>
+  </div>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span>type Person </span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token attr-name tab">id</span>
+    <span class="token punctuation">:</span>
+    <span> ID</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token attr-name tab">name</span>
+    <span class="token punctuation">:</span>
+    <span> String</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token attr-name tab">age</span>
+    <span class="token punctuation">:</span>
+    <span> Int</span>
+    <span class="token operator">!</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="keyword">mutation</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">createPerson</span>
+    <span>(name:"Homero",...)</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token query-field tab2">id</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Realtime Updates with Subscriptions</p>
+  </div>
+  <p class="text-align-justify">
+    En muchas aplicaciones es necesario tener una conexión en tiempo real con el
+    servidor para recibir información inmediata sobre eventos importantes. Para
+    esto, GraphQL ofrece el concepto de suscripciones. Cuando un cliente se
+    suscribe a un evento, iniciará y mantendrá una conexión constante con el
+    servidor. Cada vez que ese evento sucede, el servidor envía los datos
+    correspondientes al cliente.
+  </p>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Subscriptions</p>
+  </div>
+  <p class="text-align-justify">
+    Las suscripciones se escriben utilizando la misma sintaxis que las consultas
+    y mutaciones.
+  </p>
+  <code class="hljs javascript has-highlights text-align-left">
+    <span class="keyword">subscription</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="query-field tab">newPerson</span>
+    <span class="token punctuation">{</span>
+    <br />
+    <span class="token query-field tab2">name</span>
+    <br />
+    <span class="token query-field tab2">age</span>
+    <br />
+    <span class="token punctuation tab">}</span>
+    <br />
+    <span class="token punctuation">}</span>
+  </code>
+</section>
+<section>
+  <div class="gtitle-container">
+    <p class="gcolor gh2">Basic Subscriptions</p>
+  </div>
+  <p class="text-align-justify">
+    Después de que el cliente envía esta suscripción al servidor, se abre una
+    conexión entre ellos. Luego, cada vez que se realiza una nueva mutación que
+    crea una nueva Persona, el servidor envía la información sobre esta persona
+    al cliente.
+  </p>
+</section>
